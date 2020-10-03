@@ -1,0 +1,16 @@
+.form-inline {
+  width: 100%;
+}
+
+.form-style {
+  margin-top: 20px;
+}
+
+.form-group {
+  width: 90%;
+  margin: auto;
+}
+
+.input-group {
+  width: 90% !important;
+}
