@@ -43,7 +43,7 @@ class App extends Component {
   };
 
   handlePi = async () => {
-    
+
   }
 
 
@@ -78,18 +78,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <Header />
-          <Route exact path="/" render={(props) => (
-            <React.Fragment>
-              <div>
-                <button onClick={this.handleCreate}>Create</button>
-              </div>
 
-              <div>
-                <button onClick={this.handlePi}>RPI4</button>
-              </div>
-            </React.Fragment>
-          )} />
-          <Route path="/view" component={ViewTransactions} />
+          <Route exact path="/" component={ViewTransactions} />
           <Route path="/transfer" render={
             (props) => <TransferAssets {...props} web3={web3} contract={contract}/>
           }/>

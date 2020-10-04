@@ -3,6 +3,8 @@ import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import * as ReactBootStrap from "react-bootstrap";
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default function ViewTransactions() {
   const [transactions, setTransactions] = useState([]);
@@ -79,9 +81,12 @@ export default function ViewTransactions() {
 
   return (
     <div style={viewStyle}>
-      <label>
-        <input type="text" onChange={handleFilter} />
-      </label>
+      <Form className="form-style">
+        <Form.Group className="form-group" controlId="exampleForm.ControlInput1" onChange={handleFilter}>
+          <Form.Label>Filter serial number:</Form.Label>
+          <Form.Control type="text" placeholder="Serial number" />
+        </Form.Group>
+      </Form>
       <BootstrapTable
         keyField="_id"
         data={transactions}

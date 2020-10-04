@@ -19,7 +19,7 @@ class TransferAssets extends Component {
       const data = {
         "serial_number": this.state.serial_number
       }
-      axios.get('http://169.254.152.129:8090/confirm')
+      axios.post('http://169.254.152.129:8090/confirm', data)
         .then((response) => {
           console.log(response);
           toast.success("Serial number has been confirmed.");
@@ -27,6 +27,7 @@ class TransferAssets extends Component {
         })
         .catch((error) => {
           console.log('Error ovaj jedan: ', error);
+          toast.error("Serial number has not been confirmed.");
         });
     } catch (e) {
       console.log('Error out', e);

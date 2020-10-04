@@ -5,7 +5,7 @@ function Header() {
   return (
     <header style={headerStyle}>
       <h1>Asset Tracker</h1>
-      <Link style={linkStyle} to="/view"> View Transactions </Link>
+      <Link style={linkStyle} to="/"> View Transactions </Link>
        | <Link style={linkStyle} to="/transfer"> Transfer Assets </Link>
        | <Link style={linkStyle} to="/create"> Create Assets </Link>
     </header>
