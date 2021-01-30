@@ -6,6 +6,8 @@ const parser = require('body-parser')
 const app = express()
 app.use(cors())
 
+require('dotenv').config()
+
 const mongoose = require('mongoose')
 
 
@@ -20,7 +22,7 @@ mongoose.connect('mongodb://localhost/transaction', { useNewUrlParser: true, use
 const db = mongoose.connection
 db.once('open', async () => {
 
-  const provider = new HDWalletProvider(mnemonic, "https://ropsten.infura.io/v3/62f5e71782004228a6610cf3244f72ef");
+  const provider = new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${process.env.INFURA_API}`);
   const web3 = new Web3(provider);
 
   const networkId = await web3.eth.net.getId();
