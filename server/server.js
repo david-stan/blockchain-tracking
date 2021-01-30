@@ -10,19 +10,16 @@ require('dotenv').config()
 
 const mongoose = require('mongoose')
 
-
 const Transaction = require("./transaction")
 const AssetTracker = require("./ContractAbi/AssetTracker.json");
 
-const HDWalletProvider = require("truffle-hdwallet-provider");
-const mnemonic = "baby bubble inquiry bless token device march custom giraffe usual dwarf slice";
-
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 
 mongoose.connect('mongodb://localhost/transaction', { useNewUrlParser: true, useUnifiedTopology: true })
 const db = mongoose.connection
 db.once('open', async () => {
 
-  const provider = new HDWalletProvider(mnemonic, `https://ropsten.infura.io/v3/${process.env.INFURA_API}`);
+  const provider = new HDWalletProvider(process.env.MNEMONIC, `https://ropsten.infura.io/v3/${process.env.INFURA_API}`);
   const web3 = new Web3(provider);
 
   const networkId = await web3.eth.net.getId();
