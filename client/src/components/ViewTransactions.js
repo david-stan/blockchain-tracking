@@ -16,7 +16,7 @@ export default function ViewTransactions() {
 
   const getTransactionsData = async (page_num, filter) => {
     try {
-      const response = await axios.get('http://localhost:3000/transactions?pagination=5&page=' + page_num + '&regex=' + filter);
+      const response = await axios.get(`http://localhost:3000/transactions?pagination=5&page=${page_num}&regex=${filter}`);
       console.log(response);
       response.data.data.forEach((event) => {
         event.owner = formatAddress(event.owner);

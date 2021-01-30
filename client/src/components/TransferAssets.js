@@ -19,16 +19,16 @@ class TransferAssets extends Component {
       const data = {
         "serial_number": this.state.serial_number
       }
-      axios.post('http://169.254.152.129:8090/confirm', data)
-        .then((response) => {
-          console.log(response);
-          toast.success("Serial number has been confirmed.");
-          this.handleTransaction();
-        })
-        .catch((error) => {
-          console.log('Error ovaj jedan: ', error);
-          toast.error("Serial number has not been confirmed.");
-        });
+      //connecting with raspberryPi - not suitable for testing if there is no rPi
+      //axios.post('http://169.254.152.129:8090/confirm', data)
+      //  .then((response) => {
+      //    console.log(response);
+      //    toast.success("Serial number has been confirmed.");
+            this.handleTransaction();
+      //  })
+      //  .catch((error) => {
+      //    toast.error("Serial number has not been confirmed.");
+      //  });
     } catch (e) {
       console.log('Error out', e);
     }
@@ -38,10 +38,12 @@ class TransferAssets extends Component {
     const { web3, contract } = this.state;
     const accounts = await web3.eth.getAccounts();
     try {
+      //send transfer transaction to blockchain
       const receipt = await contract.methods
         .changeAssetOwnership(this.state.serial_number, (new Date()).getTime(), this.state.description)
         .send({ from: accounts[0] });
 
+      //send transaction to server
       const transaction = {
         asset_serial: receipt.events.AssetTransfered.returnValues.serial_number,
         transaction_type: "TR_TRANSFER",
